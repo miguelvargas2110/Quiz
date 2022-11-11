@@ -1,8 +1,5 @@
-
-
 import java.io.*;
 import java.net.Socket;
-import java.net.UnknownHostException;
 import java.util.Scanner;
 
 //import javax.xml.ws.handler.MessageContext.Scope;
@@ -14,22 +11,14 @@ public class AppCliente {
 
     int puerto;
     String host;
-
-    private Programa programa;
-
     // socket cliente
     Socket socketComunicacion;
-
     // flujos de entrada y salida
     DataOutputStream flujoSalida;
     DataInputStream flujoEntrada;
-
     ObjectInputStream flujoEntradaObject;
-
     ObjectOutputStream flujoSalidaObject;
-
-
-
+    private Programa programa;
 
 
     public AppCliente(String host, int puerto) {
@@ -71,7 +60,6 @@ public class AppCliente {
     }
 
 
-
     private void enviarDatos() throws IOException {
 
         Scanner sc = new Scanner(System.in);
@@ -93,20 +81,20 @@ public class AppCliente {
     private void recibirDatosPrimitivos() throws IOException {
 
 //		System.out.println("Datos recibidos del servidor: "+flujoEntrada.readInt());
-        System.out.println("Datos recibidos del servidor: "+flujoEntrada.readUTF());
+        System.out.println("Datos recibidos del servidor: " + flujoEntrada.readUTF());
     }
 
 
     private void crearConexion() throws IOException {
         // TODO Auto-generated method stub
-        socketComunicacion = new Socket(host,puerto);
+        socketComunicacion = new Socket(host, puerto);
 
     }
 
 
-    private void recibirObjeto()throws IOException, ClassNotFoundException {
+    private void recibirObjeto() throws IOException, ClassNotFoundException {
 
-        this.programa =  (Programa) flujoEntradaObject.readObject();
+        this.programa = (Programa) flujoEntradaObject.readObject();
 
 //        Scanner sc = new Scanner(System.in);
 //
@@ -130,7 +118,7 @@ public class AppCliente {
 
     }
 
-    public void validarDatos(){
+    public void validarDatos() {
 
     }
 
@@ -138,7 +126,7 @@ public class AppCliente {
 
         HiloClienteServidor hiloClienteServidor = new HiloClienteServidor();
 
-        hiloClienteServidor.inicializar(flujoEntradaObject,flujoSalidaObject,this, programa);
+        hiloClienteServidor.inicializar(flujoEntradaObject, flujoSalidaObject, this, programa);
 
         hiloClienteServidor.start();
     }

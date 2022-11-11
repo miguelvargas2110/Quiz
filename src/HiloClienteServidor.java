@@ -1,17 +1,14 @@
 import java.io.*;
 import java.util.Scanner;
 
-public class HiloClienteServidor extends  Thread{
+public class HiloClienteServidor extends Thread {
 
-
-    private DataInputStream flujoEntradaComunicacion;
-    private DataOutputStream flujoSalidaComunicacion;
-
-    private ObjectOutputStream flujoSalida;
-
-    private ObjectInputStream flujoEntrada;
 
     AppCliente cliente;
+    private DataInputStream flujoEntradaComunicacion;
+    private DataOutputStream flujoSalidaComunicacion;
+    private ObjectOutputStream flujoSalida;
+    private ObjectInputStream flujoEntrada;
     private Programa programa;
 
 
@@ -37,13 +34,13 @@ public class HiloClienteServidor extends  Thread{
         String contraseña = sc.nextLine();
 
         for (Usuario usuario : programa.getListaUsuarios()) {
-            if(usuario.getCorreo().equals(correo) && usuario.getContrasena().equals(contraseña)){
+            if (usuario.getCorreo().equals(correo) && usuario.getContrasena().equals(contraseña)) {
                 System.out.println("Inicio Sesion");
                 flag = true;
                 break;
             }
         }
-        if(!flag){
+        if (!flag) {
             System.out.println("Correo y/o contraseña no validos");
         }
         System.out.println("Se ejecuto el hilo");
@@ -70,8 +67,6 @@ public class HiloClienteServidor extends  Thread{
         }
 
     }
-
-
 
 
     private void enviarInformacion(int info) {
