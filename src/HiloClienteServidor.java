@@ -5,8 +5,6 @@ public class HiloClienteServidor extends Thread {
 
 
     AppCliente cliente;
-    private DataInputStream flujoEntradaComunicacion;
-    private DataOutputStream flujoSalidaComunicacion;
     private ObjectOutputStream flujoSalida;
     private ObjectInputStream flujoEntrada;
     private Programa programa;
@@ -47,41 +45,5 @@ public class HiloClienteServidor extends Thread {
 
 
     }
-
-    private void enviarMensajeBienvenida(String mensaje) {
-        try {
-            flujoSalidaComunicacion.writeUTF(mensaje);
-        } catch (IOException e) {
-            // TODO Auto-generated catch block
-            e.printStackTrace();
-        }
-
-    }
-
-    private void enviarCliente() {
-        try {
-            flujoSalida.writeObject(new Object());
-        } catch (IOException e) {
-            // TODO Auto-generated catch block
-            e.printStackTrace();
-        }
-
-    }
-
-
-    private void enviarInformacion(int info) {
-        try {
-            flujoSalidaComunicacion.writeInt(info);
-
-        } catch (FileNotFoundException e) {
-            // TODO Auto-generated catch block
-            e.printStackTrace();
-        } catch (IOException e) {
-            // TODO Auto-generated catch block
-            e.printStackTrace();
-        }
-
-    }
-
 }
 
